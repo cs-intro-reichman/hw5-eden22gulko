@@ -63,7 +63,7 @@ public class Scrabble {
 		int score = 0;
 		for(int i = 0; i < word.length(); i++){
 			score = score + SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
-			score *= word.length();
+	
 		}
 		if (word.length() == HAND_SIZE) {
 			score = score + 50;
@@ -72,7 +72,7 @@ public class Scrabble {
 		if (MyString.subsetOf("runi" , word) == true){
 			score = score + 1000;
 		}
-
+		score *= word.length();
 		return score;
 	}
 
@@ -112,18 +112,17 @@ public class Scrabble {
 				System.out.println("Invalid Word. Try again.");//
 			}else{
 				if (!isWordInDictionary(input)){
-					System.out.println("This word is invalid. Please try a different one.");
+					System.out.println("Invalid Word. Try again.");
 				}else{
 					score = score + wordScore(input);
-					System.out.println(input + " earned" + wordScore(input + " points. Score: " + score + " points\n"));
+					System.out.printf("%s earned %d points. Total score: %d points\n\n", input, wordScore(input), score);
 					hand = MyString.remove(hand, input);
 					if (hand.isEmpty()) {
 						break;
 					}
 				}
 			}
-
-			break;
+	
 		}
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
