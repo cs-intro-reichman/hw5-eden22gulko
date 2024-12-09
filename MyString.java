@@ -115,7 +115,7 @@ public class MyString {
         for(int j = 0; j < str2.length(); j++){
             if (str1.charAt(i) == str2.charAt(j)){
                 found = true;
-                str2 = str2.substring(0, j) + " " + str2.substring(0, j + 1);
+                str2 = str2.substring(0, j) + " " + str2.substring(j + 1);
                 break;
 
             }
