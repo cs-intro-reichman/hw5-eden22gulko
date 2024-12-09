@@ -74,6 +74,7 @@ public class Scrabble {
 		}
 		if (MyString.subsetOf("runi" , word)){
 			score = score + 1000;
+		
 		}
 		
 		return score;
@@ -111,22 +112,28 @@ public class Scrabble {
 			if (input.equals(".")){
 				break;
 			}
+			if(isWordInDictionary(input)){
 			if (!MyString.subsetOf(input, hand)){
-				System.out.println("Invalid Word. Try again.");//
+				hand = MyString.remove(hand, input);
+				int w = wordScore(input);
+				score += w;
+				System.out.println(input + " earned" + w + " points. Score: " + score + " points\n");
 			}else{
-				if (!isWordInDictionary(input)){
-					System.out.println("Invalid Word. Try again.");
-				}else{
-					score = score + wordScore(input);
-					System.out.printf("%s earned %d points. Score: %d points\n\n", input, wordScore(input), score);
-					hand = MyString.remove(hand, input);
-					if (hand.isEmpty()) {
-						break;
-					}
-				}
+				System.out.println("Invalis word. Try again.");
 			}
-	
 		}
+		if (hand.length() == 0) {
+			System.out.println("Ran out of letters. Total score: " + score + " points");
+		}else{
+			System.out.println("End of hand. Total score: " + score + " points");
+	 }
+			
+	}
+
+
+	
+		
+	
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
 		} else {
