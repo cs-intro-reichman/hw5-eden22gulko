@@ -62,14 +62,14 @@ public class Scrabble {
 	public static int wordScore(String word) {
 		int score = 0;
 		for(int i = 0; i < word.length(); i++){
-			score = score + SCRABBLE_LETTER_VALUES[(int)word.charAt(i) - 97];
+			score = score + SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
 			score *= word.length();
 		}
 		if (word.length() == HAND_SIZE) {
 			score = score + 50;
 			
 		}
-		if (word != "" && MyString.subsetOf(word, "runi") == true){
+		if (MyString.subsetOf("runi" , word) == true){
 			score = score + 1000;
 		}
 
@@ -109,7 +109,7 @@ public class Scrabble {
 				break;
 			}
 			if (!MyString.subsetOf(input, hand)){
-				System.out.println("This word is invalid. Please try a different one.");//
+				System.out.println("Invalid Word. Try again.");//
 			}else{
 				if (!isWordInDictionary(input)){
 					System.out.println("This word is invalid. Please try a different one.");
