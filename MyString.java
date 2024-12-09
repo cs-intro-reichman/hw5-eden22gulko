@@ -44,20 +44,17 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-      if(str1.length() > str2.length()) {
-        return false;
-      }
-      if(str1.length() == 0){
-        return true;
-      }
-      for(int i = 0; i < str1.length(); i++){
-        char ch = str1.charAt(i);
-             if (countChar(str1, ch) != countChar(str2, ch)){
+        if (str1 == null || str2 == null) {
             return false;
+        }
+        for (int i = 0; i < str1.length(); i++) {
+            char ch = str1.charAt(i);
+            if (countChar(str1, ch) > countChar(str2, ch)) {
+                return false;
             }
         }
-        return true;
-    }
+             return true;
+        }
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
@@ -109,25 +106,16 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       String newStr = "";
-      for (int i = 0 ; i < str1.length() ; i++){
-        boolean found = false;
-        for(int j = 0; j < str2.length(); j++){
-            if (str1.charAt(i) == str2.charAt(j)){
-                found = true;
-                str2 = str2.substring(0, j) + " " + str2.substring(j + 1);
-                break;
-
+        for (int i = 0; i < str2.length(); i++) {
+            char ch = str2.charAt(i);
+            int index = str1.indexOf(ch);
+            if (index != -1) {
+                str1 = str1.substring(0, index) + str1.substring(index + 1);
             }
         }
-        if (!found) {
-            newStr += str1.charAt(i);
-            
-        }
-      }
-        return newStr;
-    }
 
+        return str1;
+    }
     /**
      * Returns a string consisting of the given string, with the given 
      * character inserted randomly somewhere in the string.
