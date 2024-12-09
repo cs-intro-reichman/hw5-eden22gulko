@@ -73,7 +73,7 @@ public class Scrabble {
 			score = score + 50;
 			
 		}
-		if (MyString.subsetOf("runi" , word)){
+		if (word.contains("runi")){
 			score = score + 1000;
 		
 		}
@@ -118,7 +118,7 @@ public class Scrabble {
 				hand = MyString.remove(hand, input);
 				int w = wordScore(input);
 				score += w;
-				System.out.println(input + " earned" + w + " points. Score: " + score + " points\n");
+				System.out.println(input + " earned " + w + " points. Score: " + score + " points\n");
 			}else{
 				System.out.println("Invalid word. Try again.");
 			}
