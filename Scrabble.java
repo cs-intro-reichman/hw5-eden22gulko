@@ -59,15 +59,6 @@ public class Scrabble {
 		return false;
 	}
 
-	public static boolean containsAllLetters(String word, String target) {
-		for (int i = 0; i < target.length(); i++) {
-			if (!word.contains(String.valueOf(target.charAt(i)))) {
-				return false;
-			}
-		}
-	
-		return true;
-	}
 	
 	// Returns the Scrabble score of the given word.
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
