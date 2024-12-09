@@ -48,8 +48,11 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		for(int i = 0 ; i < NUM_OF_WORDS; i++){
-			if (word.equals(DICTIONARY[i])) {
+		if(word == null){
+			return false;
+		}
+		for (int i = 0 ; i < DICTIONARY.length; i++){
+			if (DICTIONARY[i] != null && DICTIONARY[i].equals(word)) {
 				return true;
 			}
 		}
@@ -63,16 +66,16 @@ public class Scrabble {
 		int score = 0;
 		for(int i = 0; i < word.length(); i++){
 			score = score + SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
-	
 		}
+		score *= word.length();
 		if (word.length() == HAND_SIZE) {
 			score = score + 50;
 			
 		}
-		if (MyString.subsetOf("runi" , word) == true){
+		if (MyString.subsetOf("runi" , word)){
 			score = score + 1000;
 		}
-		score *= word.length();
+		
 		return score;
 	}
 
@@ -115,7 +118,7 @@ public class Scrabble {
 					System.out.println("Invalid Word. Try again.");
 				}else{
 					score = score + wordScore(input);
-					System.out.printf("%s earned %d points. Total score: %d points\n\n", input, wordScore(input), score);
+					System.out.printf("%s earned %d points. Score: %d points\n\n", input, wordScore(input), score);
 					hand = MyString.remove(hand, input);
 					if (hand.isEmpty()) {
 						break;
